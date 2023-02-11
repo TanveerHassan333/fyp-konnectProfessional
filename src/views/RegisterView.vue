@@ -3,7 +3,7 @@
     <h1>Create an Account</h1>
     <input type="text" placeholder="Email" required v-model="email" />
     <input type="password" placeholder="Password" required v-model="password" />
-    <button @click="register">Submit</button>
+    <button class="register-btn" @click="register">Submit</button>
   </div>
  
 </template>
@@ -58,12 +58,23 @@
   display: block;
   margin: 2rem 1rem;
   width: 90%;
-  height: 2rem;
+  height: 2.5rem;
   border: none; 
   border-radius: 0.4rem;
   padding-left: 0.8rem;
 }
 .register input:focus{
   border: none;
+}
+.register-btn{
+  margin: 0.6rem 1rem;
+  background-color: rgba(75, 59, 245, 0.616);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.5rem 2rem;
+  border: none;
+  
 }
 </style>
