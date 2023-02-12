@@ -18,15 +18,26 @@ const router = createRouter({
       name: 'SignIn',
       component: () => import("../views/SignInView.vue"),
     },
+    
+      {
+        path: '/forgotPass',
+        name: 'forgot-pass',
+        component: () => import("../components/ForgotPass.vue") 
+    },
     {
       path: "/article",
       name:'article',
       component: () => import("../views/ArticleView.vue"),
     },
     {
-      path: "/feed",
-      name:'feed',
-      component: () => import("../views/FeedView.vue"),
+      path: "/articleShow",
+      name:'articleShow',
+      component: () => import("../views/ArticleShow.vue"),
+    },
+    { 
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import ("../views/NotFound.vue") 
     },
   ],
 });

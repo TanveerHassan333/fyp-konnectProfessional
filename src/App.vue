@@ -7,17 +7,23 @@
       <div class="navbar">
         <router-link to="/"> Home </router-link> 
       <router-link to="/feed"> Feed </router-link> 
-      <span v-if="isLoggedIn">
-        <button @click="signOut">Logout</button>
+      <span class="login-btn" v-if="isLoggedIn">
+        <router-link to="/article">
+          Articles
+        </router-link>
+        <router-link to="/articleShow">
+          Show Article
+        </router-link>
+        <button class="logout" @click="signOut">Logout</button>
       </span>
-      <span v-else>
-        <router-link class="register" to="/register"> Register </router-link> 
-        <router-link class="register" to="/sign-in"> Login </router-link>
+      <span class="register-btn" v-else>
+        <router-link to="/register"> Register </router-link> 
+        <router-link to="/sign-in"> Login </router-link>
       </span>
       </div> 
-    </nav>
-    <router-view />
+    </nav> 
   </div>
+  <router-view />
 </template>
 
 <script setup>
@@ -39,7 +45,7 @@
     router.push('/')
   }
 </script>
- <style scoped>
+ <style>
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500;600;700&display=swap');
  *{
   margin: 0;
@@ -70,12 +76,31 @@ nav{
   font-size: 1rem;
   font-weight: 600;
   color: rgba(167, 86, 244, 0.804);
+  margin-top: 1rem;
 }
 .navbar a{
   text-decoration: none;
   margin: 1rem 1.5rem;
 }
- .navbar span .register{
+.navbar a:hover{
+  border-bottom: 2px solid rgba(167, 86, 244, 0.804);
+}
+.register-btn{
   margin: 1rem 1.5rem;
+}
+.login-btn{
+  margin: 0.5rem 0.8rem;
+  color: rgba(167, 86, 244, 0.804);
+  text-decoration: none;
+}
+.logout{
+  background-color: rgba(167, 86, 244, 0.804);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: Josefin Sans;
+  font-size: 1rem;
+  font-weight: 600;
 }
 </style>

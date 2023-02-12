@@ -2,8 +2,9 @@
   <div class="register">
     <h1>Create an Account</h1>
     <input type="text" placeholder="Email" required v-model="email" />
-    <input type="password" placeholder="Password" required v-model="password" />
+    <input type="password" placeholder="Password" required v-model="password"/>
     <button class="register-btn" @click="register">Submit</button>
+    <p>Already have an Account ? <router-link to="/sign-in">Login</router-link></p>
   </div>
  
 </template>
@@ -18,7 +19,8 @@
   const register = () => {
     firebase
       .auth() // get the auth api
-      .createUserWithEmailAndPassword(email.value, password.value) // need .value because ref()
+      .createUserWithEmailAndPassword(email.value, password.value)
+       // need .value because ref()
       .then((data) => {
         console.log('Successfully registered!');
         router.push('/sign-in') // redirect to the feed
@@ -27,6 +29,13 @@
         console.log(error.code)
         alert(error.message);
       });
+      const user = firebase.auth().currentUser;
+user.sendEmailVerification().then(function() {
+  // Email sent.
+}).catch(function(error) {
+  // An error happened.
+});
+  
   }
 </script>
 
@@ -67,7 +76,7 @@
   border: none;
 }
 .register-btn{
-  margin: 0.6rem 1rem;
+  margin: 0.4rem 1rem;
   background-color: rgba(75, 59, 245, 0.616);
   color: white;
   font-size: 1rem;
@@ -75,6 +84,13 @@
   border-radius: 8px;
   padding: 0.5rem 2rem;
   border: none;
+  cursor: pointer;
   
+}
+.register p{
+  margin-left: 1rem;
+  color: white;
+  font-size: 0.90rem;
+  margin-top: 0.4rem;
 }
 </style>
